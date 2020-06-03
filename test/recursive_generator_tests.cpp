@@ -55,8 +55,9 @@ TEST_CASE("throw before first yield")
 	{
 		auto iter = gen.begin();
 		CHECK(false);
+        (void)iter;
 	}
-	catch (MyException)
+	catch (const MyException&)
 	{
 		CHECK(true);
 	}
@@ -79,8 +80,9 @@ TEST_CASE("throw after first yield")
 	{
 		++iter;
 		CHECK(false);
+        (void)iter;
 	}
-	catch (MyException)
+	catch (const MyException&)
 	{
 		CHECK(true);
 	}
@@ -137,6 +139,7 @@ TEST_CASE("destroying generator before completion destructs objects on stack")
 		auto itEnd = g.end();
 		CHECK(*it == 1u);
 		CHECK(!destructed);
+        (void)itEnd;
 	}
 
 	CHECK(!completed);
@@ -229,7 +232,7 @@ TEST_CASE("exception thrown from recursive call can be caught by caller")
 		{
 			co_yield f(1, f);
 		}
-		catch (SomeException)
+		catch (const SomeException&)
 		{
 		}
 
@@ -263,7 +266,7 @@ TEST_CASE("exceptions thrown from nested call can be caught by caller")
 			{
 				co_yield f(4, f);
 			}
-			catch (SomeException)
+			catch (const SomeException&)
 			{
 			}
 
@@ -278,7 +281,7 @@ TEST_CASE("exceptions thrown from nested call can be caught by caller")
 			{
 				co_yield f(3, f);
 			}
-			catch (SomeException)
+			catch (const SomeException&)
 			{
 				caught = true;
 			}
@@ -314,7 +317,7 @@ TEST_CASE("exceptions thrown from nested call can be caught by caller")
 		++iter;
 		CHECK(false);
 	}
-	catch (SomeException)
+	catch (const SomeException&)
 	{
 	}
 

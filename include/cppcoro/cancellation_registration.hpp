@@ -7,6 +7,7 @@
 
 #include <cppcoro/cancellation_token.hpp>
 
+#include <cstdint>
 #include <functional>
 #include <utility>
 #include <type_traits>

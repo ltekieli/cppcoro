@@ -15,7 +15,7 @@
 
 # include <atomic>
 # include <optional>
-# include <experimental/coroutine>
+# include <cppcoro/detail/coroutine.hpp>
 
 namespace cppcoro
 {
